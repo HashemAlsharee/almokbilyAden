@@ -5,17 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class CompanyItem {
   final String title;
-  final String subtitle;
-  final String backgroundImage;
-  final String logoImage;
+  final String bannerImage;
   final String routeName;
   final bool isArabic;
 
   const CompanyItem({
     required this.title,
-    required this.subtitle,
-    required this.backgroundImage,
-    required this.logoImage,
+    required this.bannerImage,
     required this.routeName,
     this.isArabic = false,
   });
@@ -24,44 +20,32 @@ class CompanyItem {
 const List<CompanyItem> companies = [
   CompanyItem(
     title: 'LONGI',
-    subtitle: 'High-efficiency\nsolar panels',
-    backgroundImage: 'images/2.jpg',
-    logoImage: 'images/longi.png',
+    bannerImage: 'images/LONGi_banner_2170x725.webp',
     routeName: 'longi',
   ),
   CompanyItem(
     title: 'Canadian Solar',
-    subtitle: 'Reliable photovoltaic\nsolutions',
-    backgroundImage: 'images/3.jpg',
-    logoImage: 'images/canadian.webp',
+    bannerImage: 'images/CanadianSolar_banner_2170x725.webp',
     routeName: 'canadian',
   ),
   CompanyItem(
     title: 'Solis',
-    subtitle: 'Smart solar\ninverters',
-    backgroundImage: 'images/4.jpg',
-    logoImage: 'images/solis.png',
+    bannerImage: 'images/Solis_banner_2170x725.webp',
     routeName: 'solis',
   ),
   CompanyItem(
     title: 'PYLONTECH',
-    subtitle: 'Advanced lithium\nbattery storage',
-    backgroundImage: 'images/5.jpg',
-    logoImage: 'images/pylontech.png',
+    bannerImage: 'images/PYLONTECH_banner_1000x475.webp',
     routeName: 'pylontech',
   ),
   CompanyItem(
     title: 'HITHIUM',
-    subtitle: 'Next-generation\nenergy storage',
-    backgroundImage: 'images/6.jpg',
-    logoImage: 'images/hthium.png',
+    bannerImage: 'images/HITHIUM_banner_2170x725.webp',
     routeName: 'hithium',
   ),
   CompanyItem(
     title: 'حاسبة الأنظمة الشمسية',
-    subtitle: 'احسب نظامك الشمسي\nالموصى به.',
-    backgroundImage: 'images/7.jpg',
-    logoImage: 'images/calculator.png',
+    bannerImage: 'images/solar_banner_generated.webp',
     routeName: 'calculator',
     isArabic: true,
   ),
@@ -215,36 +199,6 @@ class _WelcomeSection extends StatelessWidget {
   }
 }
 
-class DiagonalWhitePanelClipper extends CustomClipper<Path> {
-  const DiagonalWhitePanelClipper();
-
-  @override
-  Path getClip(Size size) {
-    return Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width * 0.61, 0)
-      ..quadraticBezierTo(
-        size.width * 0.57,
-        size.height * 0.15,
-        size.width * 0.54,
-        size.height * 0.36,
-      )
-      ..quadraticBezierTo(
-        size.width * 0.50,
-        size.height * 0.68,
-        size.width * 0.46,
-        size.height,
-      )
-      ..lineTo(0, size.height)
-      ..close();
-  }
-
-  @override
-  bool shouldReclip(covariant DiagonalWhitePanelClipper oldClipper) {
-    return false;
-  }
-}
-
 class _CompanyCard extends StatelessWidget {
   final CompanyItem item;
   final VoidCallback onTap;
@@ -258,16 +212,12 @@ class _CompanyCard extends StatelessWidget {
         final maxWidth = constraints.maxWidth > 800
             ? 800.0
             : constraints.maxWidth;
-        final double cardHeight = (constraints.maxWidth * 0.30).clamp(
+        // Calculate the previous card height solely to preserve the exact same border radius
+        final double oldCardHeight = (constraints.maxWidth * 0.30).clamp(
           170.0,
           205.0,
         );
-        final double panelWidth = maxWidth * 0.55;
-        final double arrowWidth = 54;
-        final double responsiveFontSize = (constraints.maxWidth * 0.012).clamp(
-          13.0,
-          16.0,
-        );
+        final double borderRadius = oldCardHeight * 0.11;
 
         return Center(
           child: ConstrainedBox(
@@ -278,10 +228,10 @@ class _CompanyCard extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   onTap: onTap,
+                  borderRadius: BorderRadius.circular(borderRadius),
                   child: Ink(
-                    height: cardHeight,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(cardHeight * 0.11),
+                      borderRadius: BorderRadius.circular(borderRadius),
                       color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
@@ -292,121 +242,19 @@ class _CompanyCard extends StatelessWidget {
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(cardHeight * 0.11),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Positioned.fill(
-                            child: Image.asset(
-                              item.backgroundImage,
-                              fit: BoxFit.cover,
-                              alignment: Alignment.centerRight,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Container(
-                                    color: Colors.grey.shade200,
-                                    child: const Center(
-                                      child: Icon(Icons.broken_image),
-                                    ),
-                                  ),
-                            ),
+                      borderRadius: BorderRadius.circular(borderRadius),
+                      child: Image.asset(
+                        item.bannerImage,
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth,
+                        alignment: Alignment.center,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          height: oldCardHeight,
+                          color: Colors.grey.shade200,
+                          child: const Center(
+                            child: Icon(Icons.broken_image, color: Colors.grey),
                           ),
-                          const Positioned.fill(
-                            child: ClipPath(
-                              clipper: DiagonalWhitePanelClipper(),
-                              child: ColoredBox(color: Color(0xFFFDFDFD)),
-                            ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: panelWidth,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: maxWidth * 0.035,
-                                vertical: cardHeight * 0.10,
-                              ),
-                              child: Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: arrowWidth,
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new,
-                                        color: const Color(0xFF078C65),
-                                        size: cardHeight * 0.22,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Flexible(
-                                            child: SizedBox(
-                                              width: panelWidth * 0.60,
-                                              height: cardHeight * 0.30,
-                                              child: Image.asset(
-                                                item.logoImage,
-                                                fit: BoxFit.contain,
-                                                alignment: Alignment.centerLeft,
-                                                errorBuilder:
-                                                    (
-                                                      context,
-                                                      error,
-                                                      stackTrace,
-                                                    ) {
-                                                      return Text(
-                                                        item.title,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                          color: const Color(
-                                                            0xFF082A4A,
-                                                          ),
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize:
-                                                              responsiveFontSize +
-                                                              2,
-                                                        ),
-                                                      );
-                                                    },
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(height: cardHeight * 0.08),
-                                          Flexible(
-                                            child: Text(
-                                              item.subtitle,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                color: const Color(0xFF263D53),
-                                                fontSize: responsiveFontSize,
-                                                height: 1.25,
-                                              ),
-                                              textDirection: item.isArabic
-                                                  ? TextDirection.rtl
-                                                  : TextDirection.ltr,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
