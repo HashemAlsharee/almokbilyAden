@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                           logoWidget: const Text(
                             'LONGi',
                             style: TextStyle(
-                              color: Color(0xFFD32F2F), // LONGi Red
+                              color: AppColors.navy,
                               fontSize: 32,
                               fontWeight: FontWeight.w900,
                               letterSpacing: 1.2,
@@ -48,14 +48,14 @@ class HomeScreen extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.wb_sunny,
-                                color: Color(0xFFF57C00),
+                                color: AppColors.orange,
                                 size: 28,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 'CanadianSolar',
                                 style: TextStyle(
-                                  color: Color(0xFFD32F2F),
+                                  color: AppColors.navy,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -71,14 +71,14 @@ class HomeScreen extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.wb_twilight,
-                                color: Color(0xFFF57C00),
+                                color: AppColors.orange,
                                 size: 36,
                               ),
                               SizedBox(width: 8),
                               Text(
                                 'solis',
                                 style: TextStyle(
-                                  color: Color(0xFFF57C00), // Solis Orange
+                                  color: AppColors.orange,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w300,
                                 ),
@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.battery_charging_full,
-                                color: Color(0xFF388E3C),
+                                color: AppColors.green,
                                 size: 32,
                               ),
                               SizedBox(width: 8),
@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.hexagon,
-                                color: Color(0xFF1976D2),
+                                color: AppColors.blue,
                                 size: 32,
                               ),
                               SizedBox(width: 8),

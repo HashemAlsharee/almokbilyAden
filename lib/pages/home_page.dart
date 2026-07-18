@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../catalog_data.dart';
+import '../core/theme/app_colors.dart';
+import 'company_products_page.dart';
+
 // Everything for the HomePage (models, data, widgets) is defined in this file
 
 class CompanyItem {
@@ -8,7 +12,7 @@ class CompanyItem {
   final String subtitle;
   final String backgroundImage;
   final String logoImage;
-  final String routeName;
+  final String? catalogId;
   final bool isArabic;
 
   const CompanyItem({
@@ -16,7 +20,7 @@ class CompanyItem {
     required this.subtitle,
     required this.backgroundImage,
     required this.logoImage,
-    required this.routeName,
+    this.catalogId,
     this.isArabic = false,
   });
 }
@@ -27,42 +31,41 @@ const List<CompanyItem> companies = [
     subtitle: 'High-efficiency\nsolar panels',
     backgroundImage: 'images/2.jpg',
     logoImage: 'images/longi.png',
-    routeName: 'longi',
+    catalogId: 'longi',
   ),
   CompanyItem(
     title: 'Canadian Solar',
     subtitle: 'Reliable photovoltaic\nsolutions',
     backgroundImage: 'images/3.jpg',
     logoImage: 'images/canadian.webp',
-    routeName: 'canadian',
+    catalogId: 'canadian',
   ),
   CompanyItem(
     title: 'Solis',
     subtitle: 'Smart solar\ninverters',
     backgroundImage: 'images/4.jpg',
     logoImage: 'images/solis.png',
-    routeName: 'solis',
+    catalogId: 'solis',
   ),
   CompanyItem(
     title: 'PYLONTECH',
     subtitle: 'Advanced lithium\nbattery storage',
     backgroundImage: 'images/5.jpg',
     logoImage: 'images/pylontech.png',
-    routeName: 'pylontech',
+    catalogId: 'pylontech',
   ),
   CompanyItem(
     title: 'HITHIUM',
     subtitle: 'Next-generation\nenergy storage',
     backgroundImage: 'images/6.jpg',
     logoImage: 'images/hthium.png',
-    routeName: 'hithium',
+    catalogId: 'hithium',
   ),
   CompanyItem(
     title: 'حاسبة الأنظمة الشمسية',
     subtitle: 'احسب نظامك الشمسي\nالموصى به.',
     backgroundImage: 'images/7.jpg',
     logoImage: 'images/calculator.png',
-    routeName: 'calculator',
     isArabic: true,
   ),
 ];
@@ -70,16 +73,18 @@ const List<CompanyItem> companies = [
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  void _openPlaceholder(BuildContext context, String title) {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => PlaceholderPage(title: title)));
+  void _openCatalog(BuildContext context, String catalogId) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => CompanyProductsPage(catalog: catalogById(catalogId)),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7F9),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -92,7 +97,9 @@ class HomePage extends StatelessWidget {
                 ...companies.map(
                   (c) => _CompanyCard(
                     item: c,
-                    onTap: () => _openPlaceholder(context, c.title),
+                    onTap: c.catalogId == null
+                        ? () {}
+                        : () => _openCatalog(context, c.catalogId!),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -111,7 +118,7 @@ class _TopHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      color: AppColors.background,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Column(
@@ -119,7 +126,11 @@ class _TopHeader extends StatelessWidget {
         children: [
           Center(child: SizedBox(height: 56, child: _safeSvg('images/0.svg'))),
           const SizedBox(height: 8),
-          const Divider(height: 1, thickness: 1, color: Color(0xFFE8EEF3)),
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: AppColors.navy.withValues(alpha: .08),
+          ),
         ],
       ),
     );
@@ -158,16 +169,16 @@ class _WelcomeSection extends StatelessWidget {
             fit: BoxFit.cover,
             alignment: Alignment.bottomCenter,
             errorBuilder: (context, error, stackTrace) =>
-                Container(color: Colors.grey.shade200),
+                Container(color: AppColors.blue.withValues(alpha: .22)),
           ),
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Color.fromRGBO(255, 255, 255, 0.85),
-                  Color.fromRGBO(255, 255, 255, 0.10),
+                  AppColors.background,
+                  AppColors.background.withValues(alpha: .10),
                 ],
               ),
             ),
@@ -182,7 +193,7 @@ class _WelcomeSection extends StatelessWidget {
                     'مرحباً بك',
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
-                      color: Color(0xFF082A4A),
+                      color: AppColors.navy,
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
                     ),
@@ -191,17 +202,14 @@ class _WelcomeSection extends StatelessWidget {
                   Text(
                     'اختر الشركة التي ترغب باستعراض منتجاتها',
                     textDirection: TextDirection.rtl,
-                    style: const TextStyle(
-                      color: Color(0xFF082A4A),
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(color: AppColors.navy, fontSize: 16),
                   ),
                   const SizedBox(height: 10),
                   Container(
                     width: 36,
                     height: 4,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFF5A000),
+                      color: AppColors.orange,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -275,17 +283,17 @@ class _CompanyCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Material(
-                color: Colors.transparent,
+                color: AppColors.background.withValues(alpha: 0),
                 child: InkWell(
                   onTap: onTap,
                   child: Ink(
                     height: cardHeight,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(cardHeight * 0.11),
-                      color: Colors.white,
-                      boxShadow: const [
+                      color: AppColors.background,
+                      boxShadow: [
                         BoxShadow(
-                          color: Color.fromRGBO(11, 31, 52, 0.08),
+                          color: AppColors.navy.withValues(alpha: .08),
                           blurRadius: 18,
                           offset: Offset(0, 10),
                         ),
@@ -303,7 +311,9 @@ class _CompanyCard extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               errorBuilder: (context, error, stackTrace) =>
                                   Container(
-                                    color: Colors.grey.shade200,
+                                    color: AppColors.blue.withValues(
+                                      alpha: .22,
+                                    ),
                                     child: const Center(
                                       child: Icon(Icons.broken_image),
                                     ),
@@ -313,7 +323,7 @@ class _CompanyCard extends StatelessWidget {
                           const Positioned.fill(
                             child: ClipPath(
                               clipper: DiagonalWhitePanelClipper(),
-                              child: ColoredBox(color: Color(0xFFFDFDFD)),
+                              child: ColoredBox(color: AppColors.background),
                             ),
                           ),
                           Positioned(
@@ -335,7 +345,7 @@ class _CompanyCard extends StatelessWidget {
                                       width: arrowWidth,
                                       child: Icon(
                                         Icons.arrow_back_ios_new,
-                                        color: const Color(0xFF078C65),
+                                        color: AppColors.green,
                                         size: cardHeight * 0.22,
                                       ),
                                     ),
@@ -368,9 +378,7 @@ class _CompanyCard extends StatelessWidget {
                                                         overflow: TextOverflow
                                                             .ellipsis,
                                                         style: TextStyle(
-                                                          color: const Color(
-                                                            0xFF082A4A,
-                                                          ),
+                                                          color: AppColors.navy,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize:
@@ -389,7 +397,7 @@ class _CompanyCard extends StatelessWidget {
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
-                                                color: const Color(0xFF263D53),
+                                                color: AppColors.navy,
                                                 fontSize: responsiveFontSize,
                                                 height: 1.25,
                                               ),
@@ -416,28 +424,6 @@ class _CompanyCard extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class PlaceholderPage extends StatelessWidget {
-  final String title;
-
-  const PlaceholderPage({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: const Color(0xFF082A4A),
-      ),
-      body: Center(
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
     );
   }
 }
