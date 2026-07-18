@@ -181,6 +181,7 @@ class _ProductStage extends StatelessWidget {
                   catalog.logoPath,
                   fit: BoxFit.contain,
                   alignment: Alignment.centerLeft,
+                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                 ),
               ),
             ),

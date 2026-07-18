@@ -176,89 +176,11 @@ class _Hero extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           child: SizedBox(
             height: height,
-            child: catalog.id == 'longi'
-                ? Image.asset(catalog.heroImagePath, fit: BoxFit.cover)
-                : Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.asset(
-                        catalog.heroImagePath,
-                        fit: BoxFit.cover,
-                        alignment: Alignment.centerRight,
-                      ),
-                      DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [
-                              AppColors.background,
-                              AppColors.background.withValues(alpha: .82),
-                              AppColors.background.withValues(alpha: 0),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: 22,
-                        top: 18,
-                        bottom: 18,
-                        width: constraints.maxWidth * .48,
-                        child: LayoutBuilder(
-                          builder: (context, contentConstraints) {
-                            final compact = constraints.maxWidth < 500;
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: compact ? 42 : 68,
-                                  width: double.infinity,
-                                  child: Image.asset(
-                                    catalog.logoPath,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment.centerLeft,
-                                  ),
-                                ),
-                                SizedBox(height: compact ? 10 : 18),
-                                Text(
-                                  catalog.heroHeadline,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: AppColors.navy,
-                                    fontSize: compact ? 16 : 21,
-                                    fontWeight: FontWeight.w700,
-                                    height: 1.35,
-                                  ),
-                                ),
-                                SizedBox(height: compact ? 5 : 8),
-                                Text(
-                                  catalog.heroDescription,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: AppColors.navy,
-                                    fontSize: compact ? 13 : 17,
-                                    height: 1.35,
-                                  ),
-                                ),
-                                SizedBox(height: compact ? 10 : 18),
-                                Container(
-                                  width: compact ? 34 : 50,
-                                  height: 4,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.green,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+            child: Image.asset(
+              catalog.heroImagePath,
+              fit: BoxFit.contain,
+              errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+            ),
           ),
         );
       },

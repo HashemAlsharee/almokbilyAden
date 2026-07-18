@@ -3,34 +3,23 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../catalog_data.dart';
 import '../core/theme/app_colors.dart';
+import 'calculator_page.dart';
 import 'company_products_page.dart';
 
 // Everything for the HomePage (models, data, widgets) is defined in this file
 
 class CompanyItem {
   final String title;
-<<<<<<< HEAD
   final String bannerImage;
   final String routeName;
-=======
-  final String subtitle;
-  final String backgroundImage;
-  final String logoImage;
-  final String? catalogId;
->>>>>>> origin/product-pages
   final bool isArabic;
+  final String? catalogId;
 
   const CompanyItem({
     required this.title,
-<<<<<<< HEAD
     required this.bannerImage,
     required this.routeName,
-=======
-    required this.subtitle,
-    required this.backgroundImage,
-    required this.logoImage,
-    this.catalogId,
->>>>>>> origin/product-pages
+    required this.catalogId,
     this.isArabic = false,
   });
 }
@@ -38,75 +27,40 @@ class CompanyItem {
 const List<CompanyItem> companies = [
   CompanyItem(
     title: 'LONGI',
-<<<<<<< HEAD
     bannerImage: 'images/LONGi_banner_2170x725.webp',
     routeName: 'longi',
+    catalogId: 'longi',
   ),
   CompanyItem(
     title: 'Canadian Solar',
     bannerImage: 'images/CanadianSolar_banner_2170x725.webp',
     routeName: 'canadian',
+    catalogId: 'canadian',
   ),
   CompanyItem(
     title: 'Solis',
     bannerImage: 'images/Solis_banner_2170x725.webp',
     routeName: 'solis',
+    catalogId: 'solis',
   ),
   CompanyItem(
     title: 'PYLONTECH',
     bannerImage: 'images/PYLONTECH_banner_1000x475.webp',
     routeName: 'pylontech',
+    catalogId: 'pylontech',
   ),
   CompanyItem(
     title: 'HITHIUM',
     bannerImage: 'images/HITHIUM_banner_2170x725.webp',
     routeName: 'hithium',
+    catalogId: 'hithium',
   ),
   CompanyItem(
     title: 'حاسبة الأنظمة الشمسية',
     bannerImage: 'images/solar_banner_generated.webp',
     routeName: 'calculator',
-=======
-    subtitle: 'High-efficiency\nsolar panels',
-    backgroundImage: 'images/2.jpg',
-    logoImage: 'images/longi.png',
-    catalogId: 'longi',
-  ),
-  CompanyItem(
-    title: 'Canadian Solar',
-    subtitle: 'Reliable photovoltaic\nsolutions',
-    backgroundImage: 'images/3.jpg',
-    logoImage: 'images/canadian.webp',
-    catalogId: 'canadian',
-  ),
-  CompanyItem(
-    title: 'Solis',
-    subtitle: 'Smart solar\ninverters',
-    backgroundImage: 'images/4.jpg',
-    logoImage: 'images/solis.png',
-    catalogId: 'solis',
-  ),
-  CompanyItem(
-    title: 'PYLONTECH',
-    subtitle: 'Advanced lithium\nbattery storage',
-    backgroundImage: 'images/5.jpg',
-    logoImage: 'images/pylontech.png',
-    catalogId: 'pylontech',
-  ),
-  CompanyItem(
-    title: 'HITHIUM',
-    subtitle: 'Next-generation\nenergy storage',
-    backgroundImage: 'images/6.jpg',
-    logoImage: 'images/hthium.png',
-    catalogId: 'hithium',
-  ),
-  CompanyItem(
-    title: 'حاسبة الأنظمة الشمسية',
-    subtitle: 'احسب نظامك الشمسي\nالموصى به.',
-    backgroundImage: 'images/7.jpg',
-    logoImage: 'images/calculator.png',
->>>>>>> origin/product-pages
     isArabic: true,
+    catalogId: '',
   ),
 ];
 
@@ -137,9 +91,18 @@ class HomePage extends StatelessWidget {
                 ...companies.map(
                   (c) => _CompanyCard(
                     item: c,
-                    onTap: c.catalogId == null
-                        ? () {}
-                        : () => _openCatalog(context, c.catalogId!),
+                    onTap: () {
+                      if (c.routeName == 'calculator') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const CalculatorPage(),
+                          ),
+                        );
+                      } else if (c.catalogId != null && c.catalogId!.isNotEmpty) {
+                        _openCatalog(context, c.catalogId!);
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -295,15 +258,9 @@ class _CompanyCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: Ink(
                     decoration: BoxDecoration(
-<<<<<<< HEAD
                       borderRadius: BorderRadius.circular(borderRadius),
-                      color: Colors.white,
-                      boxShadow: const [
-=======
-                      borderRadius: BorderRadius.circular(cardHeight * 0.11),
                       color: AppColors.background,
                       boxShadow: [
->>>>>>> origin/product-pages
                         BoxShadow(
                           color: AppColors.navy.withValues(alpha: .08),
                           blurRadius: 18,
@@ -312,7 +269,6 @@ class _CompanyCard extends StatelessWidget {
                       ],
                     ),
                     child: ClipRRect(
-<<<<<<< HEAD
                       borderRadius: BorderRadius.circular(borderRadius),
                       child: Image.asset(
                         item.bannerImage,
@@ -326,123 +282,6 @@ class _CompanyCard extends StatelessWidget {
                             child: Icon(Icons.broken_image, color: Colors.grey),
                           ),
                         ),
-=======
-                      borderRadius: BorderRadius.circular(cardHeight * 0.11),
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Positioned.fill(
-                            child: Image.asset(
-                              item.backgroundImage,
-                              fit: BoxFit.cover,
-                              alignment: Alignment.centerRight,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Container(
-                                    color: AppColors.blue.withValues(
-                                      alpha: .22,
-                                    ),
-                                    child: const Center(
-                                      child: Icon(Icons.broken_image),
-                                    ),
-                                  ),
-                            ),
-                          ),
-                          const Positioned.fill(
-                            child: ClipPath(
-                              clipper: DiagonalWhitePanelClipper(),
-                              child: ColoredBox(color: AppColors.background),
-                            ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: panelWidth,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: maxWidth * 0.035,
-                                vertical: cardHeight * 0.10,
-                              ),
-                              child: Directionality(
-                                textDirection: TextDirection.ltr,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: arrowWidth,
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new,
-                                        color: AppColors.green,
-                                        size: cardHeight * 0.22,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    Flexible(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Flexible(
-                                            child: SizedBox(
-                                              width: panelWidth * 0.60,
-                                              height: cardHeight * 0.30,
-                                              child: Image.asset(
-                                                item.logoImage,
-                                                fit: BoxFit.contain,
-                                                alignment: Alignment.centerLeft,
-                                                errorBuilder:
-                                                    (
-                                                      context,
-                                                      error,
-                                                      stackTrace,
-                                                    ) {
-                                                      return Text(
-                                                        item.title,
-                                                        maxLines: 1,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        style: TextStyle(
-                                                          color: AppColors.navy,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize:
-                                                              responsiveFontSize +
-                                                              2,
-                                                        ),
-                                                      );
-                                                    },
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(height: cardHeight * 0.08),
-                                          Flexible(
-                                            child: Text(
-                                              item.subtitle,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                color: AppColors.navy,
-                                                fontSize: responsiveFontSize,
-                                                height: 1.25,
-                                              ),
-                                              textDirection: item.isArabic
-                                                  ? TextDirection.rtl
-                                                  : TextDirection.ltr,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
->>>>>>> origin/product-pages
                       ),
                     ),
                   ),
