@@ -33,9 +33,13 @@ class BrandCard extends StatelessWidget {
                 bottom: 0,
                 width: MediaQuery.of(context).size.width * 0.55,
                 child: Container(
-                  color: AppColors.secondary.withValues(alpha: 0.2), 
+                  color: AppColors.secondary.withValues(alpha: 0.2),
                   child: const Center(
-                    child: Icon(Icons.image, size: 40, color: AppColors.secondary),
+                    child: Icon(
+                      Icons.image,
+                      size: 40,
+                      color: AppColors.secondary,
+                    ),
                   ),
                 ),
               ),
@@ -57,7 +61,10 @@ class BrandCard extends StatelessWidget {
               ),
               // Content
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Row(
                   children: [
                     Expanded(

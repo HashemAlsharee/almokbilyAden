@@ -21,7 +21,10 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const HeroBanner(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 16,
+                    ),
                     child: Column(
                       children: [
                         BrandCard(
@@ -43,7 +46,11 @@ class HomeScreen extends StatelessWidget {
                           subtitle: 'Reliable photovoltaic solutions',
                           logoWidget: Row(
                             children: const [
-                              Icon(Icons.wb_sunny, color: Color(0xFFF57C00), size: 28),
+                              Icon(
+                                Icons.wb_sunny,
+                                color: Color(0xFFF57C00),
+                                size: 28,
+                              ),
                               SizedBox(width: 8),
                               Text(
                                 'CanadianSolar',
@@ -62,7 +69,11 @@ class HomeScreen extends StatelessWidget {
                           subtitle: 'Smart solar inverters',
                           logoWidget: Row(
                             children: const [
-                              Icon(Icons.wb_twilight, color: Color(0xFFF57C00), size: 36),
+                              Icon(
+                                Icons.wb_twilight,
+                                color: Color(0xFFF57C00),
+                                size: 36,
+                              ),
                               SizedBox(width: 8),
                               Text(
                                 'solis',
@@ -81,7 +92,11 @@ class HomeScreen extends StatelessWidget {
                           subtitle: 'Advanced lithium battery storage',
                           logoWidget: Row(
                             children: const [
-                              Icon(Icons.battery_charging_full, color: Color(0xFF388E3C), size: 32),
+                              Icon(
+                                Icons.battery_charging_full,
+                                color: Color(0xFF388E3C),
+                                size: 32,
+                              ),
                               SizedBox(width: 8),
                               Text(
                                 'PYLONTECH',
@@ -100,7 +115,11 @@ class HomeScreen extends StatelessWidget {
                           subtitle: 'Next-generation energy storage',
                           logoWidget: Row(
                             children: const [
-                              Icon(Icons.hexagon, color: Color(0xFF1976D2), size: 32),
+                              Icon(
+                                Icons.hexagon,
+                                color: Color(0xFF1976D2),
+                                size: 32,
+                              ),
                               SizedBox(width: 8),
                               Text(
                                 'HITHIUM',
@@ -115,9 +134,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           onTap: () {},
                         ),
-                        CalculatorCard(
-                          onTap: () {},
-                        ),
+                        CalculatorCard(onTap: () {}),
                         const SizedBox(height: 32),
                       ],
                     ),

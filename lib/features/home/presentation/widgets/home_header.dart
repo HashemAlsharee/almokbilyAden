@@ -15,7 +15,11 @@ class HomeHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Assuming an asset will replace this later. Using Text/Icon as placeholder.
-            const Icon(Icons.wb_sunny_outlined, color: AppColors.primary, size: 28),
+            const Icon(
+              Icons.wb_sunny_outlined,
+              color: AppColors.primary,
+              size: 28,
+            ),
             const SizedBox(width: 8),
             const Text(
               'ALMOKBILY',
@@ -27,11 +31,7 @@ class HomeHeader extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Container(
-              width: 1,
-              height: 24,
-              color: AppColors.divider,
-            ),
+            Container(width: 1, height: 24, color: AppColors.divider),
             const SizedBox(width: 16),
             const Expanded(
               child: Text(

@@ -29,16 +29,46 @@ class AppTheme {
         ),
       ),
       textTheme: const TextTheme(
-        displayLarge: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold),
-        displayMedium: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold),
-        displaySmall: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold),
-        headlineMedium: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600),
-        titleLarge: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600),
-        titleMedium: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w500),
-        bodyLarge: TextStyle(color: AppColors.primary, fontWeight: FontWeight.normal),
-        bodyMedium: TextStyle(color: AppColors.primary, fontWeight: FontWeight.normal),
-        labelLarge: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w500),
-        bodySmall: TextStyle(color: AppColors.primary, fontWeight: FontWeight.normal),
+        displayLarge: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.bold,
+        ),
+        displayMedium: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.bold,
+        ),
+        displaySmall: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.bold,
+        ),
+        headlineMedium: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.w600,
+        ),
+        titleLarge: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.w600,
+        ),
+        titleMedium: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.w500,
+        ),
+        bodyLarge: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.normal,
+        ),
+        bodyMedium: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.normal,
+        ),
+        labelLarge: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.w500,
+        ),
+        bodySmall: TextStyle(
+          color: AppColors.primary,
+          fontWeight: FontWeight.normal,
+        ),
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
@@ -49,9 +79,7 @@ class AppTheme {
         color: AppColors.surface,
         elevation: 1,
         shadowColor: AppColors.primary.withValues(alpha: 0.05),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         margin: EdgeInsets.zero,
       ),
     );

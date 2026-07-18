@@ -4,10 +4,7 @@ import '../../../../core/theme/app_colors.dart';
 class CalculatorCard extends StatelessWidget {
   final VoidCallback onTap;
 
-  const CalculatorCard({
-    super.key,
-    required this.onTap,
-  });
+  const CalculatorCard({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +24,13 @@ class CalculatorCard extends StatelessWidget {
                 bottom: 0,
                 width: MediaQuery.of(context).size.width * 0.55,
                 child: Container(
-                  color: AppColors.secondary.withValues(alpha: 0.1), 
+                  color: AppColors.secondary.withValues(alpha: 0.1),
                   child: const Center(
-                    child: Icon(Icons.solar_power, size: 40, color: AppColors.primary),
+                    child: Icon(
+                      Icons.solar_power,
+                      size: 40,
+                      color: AppColors.primary,
+                    ),
                   ),
                 ),
               ),
@@ -51,7 +52,10 @@ class CalculatorCard extends StatelessWidget {
               ),
               // Content
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Row(
                   children: [
                     Expanded(
