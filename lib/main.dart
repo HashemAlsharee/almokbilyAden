@@ -30,6 +30,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'core/theme/app_theme.dart';
 import 'pages/home_page.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Almokbily',
+      theme: AppTheme.lightTheme,
       home: const HomePage(),
     );
   }
