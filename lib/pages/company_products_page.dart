@@ -51,7 +51,7 @@ class CompanyProductsPage extends StatelessWidget {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: compact ? 10 : 16,
                                   mainAxisSpacing: compact ? 10 : 16,
-                                  childAspectRatio: compact ? .82 : .92,
+                                  childAspectRatio: compact ? 1.04 : 1.1,
                                 ),
                             itemBuilder: (context, index) {
                               final product = catalog.products[index];
@@ -195,126 +195,199 @@ class _ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: AppColors.background,
-      borderRadius: BorderRadius.circular(16),
-      elevation: 3,
-      shadowColor: AppColors.navy.withValues(alpha: .12),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        child: Stack(
-          children: [
-            Positioned(
-              right: -35,
-              bottom: -35,
-              child: Container(
-                width: 180,
-                height: 140,
-                decoration: BoxDecoration(
-                  color: AppColors.blue.withValues(alpha: .32),
-                  borderRadius: BorderRadius.circular(70),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardWidth = constraints.maxWidth;
+        final horizontalInset = (cardWidth * .045).clamp(7.0, 16.0);
+        final buttonSize = (cardWidth * .17).clamp(36.0, 58.0);
+        final nameSize = (cardWidth * .045).clamp(12.0, 16.0);
+        final detailSize = (cardWidth * .039).clamp(10.5, 14.0);
+        final categorySize = (cardWidth * .035).clamp(10.0, 13.0);
+
+        return Material(
+          color: const Color(0xFFFCFCFD),
+          borderRadius: BorderRadius.circular(16),
+          elevation: 3,
+          shadowColor: AppColors.navy.withValues(alpha: .11),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: onTap,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                const RepaintBoundary(
+                  child: CustomPaint(painter: _ProductCardBackgroundPainter()),
                 ),
-              ),
-            ),
-            Positioned(
-              left: 45,
-              bottom: -60,
-              child: Transform.rotate(
-                angle: -.45,
-                child: Container(
-                  width: 85,
-                  height: 190,
-                  color: AppColors.orange.withValues(alpha: .48),
+                Positioned(
+                  left: horizontalInset,
+                  top: constraints.maxHeight * .055,
+                  bottom: constraints.maxHeight * .055,
+                  width: cardWidth * .45,
+                  child: _ProductImage(product: product),
                 ),
-              ),
-            ),
-            Positioned(
-              left: 8,
-              top: 10,
-              bottom: 22,
-              width: 58,
-              child: _ProductImage(product: product),
-            ),
-            Positioned(
-              right: 10,
-              top: 34,
-              bottom: 12,
-              left: 74,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Spacer(),
-                  Text(
-                    product.name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                      color: AppColors.navy,
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      height: 1.25,
+                Positioned(
+                  right: horizontalInset,
+                  left: cardWidth * .48,
+                  bottom: constraints.maxHeight * .075,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Text(
+                          product.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: AppColors.navy,
+                            fontSize: nameSize,
+                            fontWeight: FontWeight.w700,
+                            height: 1.2,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: constraints.maxHeight * .025),
+                      Text(
+                        product.model,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                          color: AppColors.navy,
+                          fontSize: detailSize,
+                          height: 1.15,
+                        ),
+                      ),
+                      SizedBox(height: constraints.maxHeight * .025),
+                      Text(
+                        product.power,
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                          color: AppColors.navy,
+                          fontSize: detailSize,
+                          height: 1.15,
+                        ),
+                      ),
+                      SizedBox(height: constraints.maxHeight * .025),
+                      Text(
+                        product.type,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: const Color(0xFF14966B),
+                          fontSize: categorySize,
+                          fontWeight: FontWeight.w600,
+                          height: 1.2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  left: horizontalInset,
+                  bottom: constraints.maxHeight * .035,
+                  child: Container(
+                    width: buttonSize,
+                    height: buttonSize,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFCFCFD),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.navy.withValues(alpha: .1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: const Color(0xFF14966B),
+                      size: buttonSize * .4,
                     ),
                   ),
-                  const SizedBox(height: 5),
-                  Text(
-                    product.model,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textDirection: TextDirection.ltr,
-                    style: const TextStyle(color: AppColors.navy, fontSize: 11),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    product.power,
-                    textDirection: TextDirection.ltr,
-                    style: const TextStyle(color: AppColors.navy, fontSize: 12),
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    product.type,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: AppColors.green,
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 8,
-              bottom: 8,
-              child: Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: AppColors.background,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.background, width: 5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.navy.withValues(alpha: .08),
-                      blurRadius: 8,
-                    ),
-                  ],
                 ),
-                child: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: AppColors.green,
-                  size: 18,
-                ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
+}
+
+class _ProductCardBackgroundPainter extends CustomPainter {
+  const _ProductCardBackgroundPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final blueShape = Path()
+      ..moveTo(size.width * .29, size.height)
+      ..cubicTo(
+        size.width * .4,
+        size.height * .76,
+        size.width * .48,
+        size.height * .43,
+        size.width * .7,
+        size.height * .35,
+      )
+      ..cubicTo(
+        size.width * .84,
+        size.height * .3,
+        size.width * .94,
+        size.height * .34,
+        size.width,
+        size.height * .27,
+      )
+      ..lineTo(size.width, size.height)
+      ..close();
+    canvas.drawPath(
+      blueShape,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFE7F4FA), Color(0xFFCFE6F3)],
+        ).createShader(Offset.zero & size),
+    );
+
+    final peachShape = Path()
+      ..moveTo(0, size.height * .67)
+      ..cubicTo(
+        size.width * .14,
+        size.height * .55,
+        size.width * .25,
+        size.height * .57,
+        size.width * .36,
+        size.height * .69,
+      )
+      ..cubicTo(
+        size.width * .45,
+        size.height * .8,
+        size.width * .56,
+        size.height * .86,
+        size.width * .72,
+        size.height,
+      )
+      ..lineTo(0, size.height)
+      ..close();
+    canvas.drawPath(
+      peachShape,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFFFF1E3), Color(0xFFF8DDC5)],
+        ).createShader(Offset.zero & size),
+    );
+  }
+
+  @override
+  bool shouldRepaint(_ProductCardBackgroundPainter oldDelegate) => false;
 }
 
 class _ProductImage extends StatelessWidget {
@@ -336,20 +409,25 @@ class _ProductImage extends StatelessWidget {
 
 class _ProductPlaceholder extends StatelessWidget {
   const _ProductPlaceholder();
+
   @override
   Widget build(BuildContext context) => Center(
-    child: Container(
-      width: 58,
-      height: double.infinity,
-      decoration: BoxDecoration(
-        color: AppColors.navy,
-        border: Border.all(color: AppColors.blue, width: 2),
-        borderRadius: BorderRadius.circular(3),
-      ),
-      child: const Icon(
-        Icons.solar_power_outlined,
-        color: AppColors.blue,
-        size: 34,
+    child: AspectRatio(
+      aspectRatio: .78,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: const Color(0xFFF1F4F6),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Center(
+          child: FractionallySizedBox(
+            widthFactor: .42,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Icon(Icons.image_outlined, color: Color(0xFF9AA7B2)),
+            ),
+          ),
+        ),
       ),
     ),
   );

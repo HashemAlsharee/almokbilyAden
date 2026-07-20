@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../catalog_data.dart';
 import '../core/theme/app_colors.dart';
-import 'calculator_page.dart';
 import 'company_products_page.dart';
+import 'solar_calculator_page.dart';
 
 // Everything for the HomePage (models, data, widgets) is defined in this file
 
@@ -96,10 +96,11 @@ class HomePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => const CalculatorPage(),
+                            builder: (_) => const SolarCalculatorPage(),
                           ),
                         );
-                      } else if (c.catalogId != null && c.catalogId!.isNotEmpty) {
+                      } else if (c.catalogId != null &&
+                          c.catalogId!.isNotEmpty) {
                         _openCatalog(context, c.catalogId!);
                       }
                     },
