@@ -8,6 +8,7 @@ class SolarCalculatorUnavailablePage extends StatelessWidget {
   final double nightLoadWatts;
   final int nightOperatingHours;
   final double requiredSystemKw;
+  final String? failureReason;
 
   const SolarCalculatorUnavailablePage({
     super.key,
@@ -15,6 +16,7 @@ class SolarCalculatorUnavailablePage extends StatelessWidget {
     required this.nightLoadWatts,
     required this.nightOperatingHours,
     required this.requiredSystemKw,
+    this.failureReason,
   });
 
   @override
@@ -58,7 +60,7 @@ class SolarCalculatorUnavailablePage extends StatelessWidget {
                               ),
                               SizedBox(height: 18 * scale),
                               Text(
-                                'تعذر إكمال الحساب، يرجى التحقق من التالي:',
+                                failureReason ?? 'تعذر إكمال الحساب، يرجى التحقق من التالي:',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: AppColors.navy,

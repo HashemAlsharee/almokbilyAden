@@ -1,0 +1,58 @@
+{
+    "brandId": "canadian_solar",
+    "brandName": "Canadian Solar",
+    "brandLogo": "assets/images/brands/canadian_solar/logo.webp",
+    "brandBanner": "assets/images/brands/canadian_solar/banner.webp",
+    "products": [
+        {
+            "id": "canadian_solar_cs7n_715tb_ag",
+            "name": "TOPBiHiKu7",
+            "model": "CS7N-715TB-AG",
+            "category": "ألواح شمسية ثنائية الوجه",
+            "image": "assets/images/products/canadian_solar/cs7n_715tb_ag.webp",
+            "datasheet": "datasheet/candian solar 715w.pdf",
+            "overview": "لوح شمسي ثنائي الوجه يعتمد تقنية TOPCon من النوع N. يوفر قدرة مرتفعة وكفاءة عالية للاستخدام في أنظمة الطاقة الشمسية التجارية والصناعية. مناسب للتركيب في المشاريع ذات المساحات الكبيرة.",
+            "specifications": [
+                {
+                    "title": "القدرة",
+                    "value": "715",
+                    "unit": "W",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "الجهد",
+                    "value": "48.5",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "الكفاءة",
+                    "value": "23.0",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "الوزن",
+                    "value": "37.8",
+                    "unit": "kg",
+                    "icon": "weight"
+                },
+                {
+                    "title": "نوع الخلايا",
+                    "value": "TOPCon cells",
+                    "unit": "",
+                    "icon": "cells"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "30 سنة أداء خطي / 12 سنة ضمان المنتج",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "power": 715
+            }
+        }
+    ]
+}

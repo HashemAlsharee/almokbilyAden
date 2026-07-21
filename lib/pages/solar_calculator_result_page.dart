@@ -1,10 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../catalog_data.dart';
 import '../core/theme/app_colors.dart';
+import '../solar_recommendation_engine.dart';
 import 'product_details_page.dart';
 
 class SolarCalculatorResultPage extends StatelessWidget {
@@ -12,6 +11,7 @@ class SolarCalculatorResultPage extends StatelessWidget {
   final double nightLoadWatts;
   final int nightOperatingHours;
   final double requiredSystemKw;
+  final RecommendationResult? result;
 
   const SolarCalculatorResultPage({
     super.key,
@@ -19,44 +19,57 @@ class SolarCalculatorResultPage extends StatelessWidget {
     required this.nightLoadWatts,
     required this.nightOperatingHours,
     required this.requiredSystemKw,
+    this.result,
   });
 
   @override
   Widget build(BuildContext context) {
-    final panel = _catalogProduct('longi');
-    final inverter = _catalogProduct('solis');
-    final battery = _catalogProduct('pylontech');
+    final activeResult = result ??
+        SolarRecommendationEngine().calculate(
+          SolarInput(
+            dayLoadWatts: dayLoadWatts,
+            nightLoadWatts: nightLoadWatts,
+            nightOperatingHours: nightOperatingHours,
+          ),
+        );
 
-    // TODO: Replace the temporary recommendation data with the final calculator result.
-    final panelWattage = _powerValue(panel.product.power) ?? 580;
-    final previewSystemKw = requiredSystemKw.clamp(0.0, 5.0);
-    final panelCount = math.max(
-      1,
-      (previewSystemKw * 1000 / panelWattage).ceil(),
+    final panelCatalog = catalogById(
+      activeResult.selectedPanel.companyName.toLowerCase() == 'longi' ? 'longi' : 'longi',
     );
-    final previewCapacityKw = panelCount * panelWattage / 1000;
+    final inverterCatalog = catalogById(
+      activeResult.selectedInverter.companyName.toLowerCase() == 'solis' ? 'solis' : 'solis',
+    );
+    final batteryCatalog = catalogById(
+      activeResult.selectedBattery.companyName.toLowerCase() == 'hithium' ? 'hithium' : 'pylontech',
+    );
 
-    // TODO: Replace these mock quantities with the final product sizing results.
+    final panelCount = activeResult.panelQuantity;
+    final panelWattage = 650.0;
+    final previewCapacityKw = panelCount * panelWattage / 1000.0;
+
     final recommendedProducts = <_RecommendedProduct>[
       _RecommendedProduct(
-        catalog: panel.catalog,
-        product: panel.product,
-        category: 'ألواح شمسية',
+        catalog: panelCatalog,
+        product: activeResult.selectedPanel,
+        category:
+            'ألواح شمسية (${activeResult.calculatedDayPanels} لوح للنهار + ${activeResult.calculatedChargingPanels} لوح للشحن)',
         quantity: '$panelCount لوح',
         fallbackIcon: Icons.solar_power_outlined,
       ),
       _RecommendedProduct(
-        catalog: inverter.catalog,
-        product: inverter.product,
-        category: 'عاكس شمسي',
+        catalog: inverterCatalog,
+        product: activeResult.selectedInverter,
+        category:
+            'عاكس شمسي هجين (مطلوب ${(activeResult.requiredInverterPowerWatts / 1000.0).toStringAsFixed(1)} kW)',
         quantity: '1 جهاز',
         fallbackIcon: Icons.electrical_services_outlined,
       ),
       _RecommendedProduct(
-        catalog: battery.catalog,
-        product: battery.product,
-        category: 'بطارية تخزين',
-        quantity: '2 وحدة',
+        catalog: batteryCatalog,
+        product: activeResult.selectedBattery,
+        category:
+            'بطارية تخزين (مطلوب ${(activeResult.requiredBatteryCapacityWh / 1000.0).toStringAsFixed(1)} kWh)',
+        quantity: '${activeResult.batteryQuantity} وحدة',
         fallbackIcon: Icons.battery_charging_full_outlined,
       ),
     ];
@@ -155,22 +168,6 @@ class SolarCalculatorResultPage extends StatelessWidget {
     );
   }
 
-  static _CatalogProduct _catalogProduct(String catalogId) {
-    final catalog = catalogById(catalogId);
-    return _CatalogProduct(catalog, catalog.products.first);
-  }
-
-  static double? _powerValue(String input) {
-    final match = RegExp(r'[\d.]+').firstMatch(input);
-    return match == null ? null : double.tryParse(match.group(0)!);
-  }
-}
-
-class _CatalogProduct {
-  final CompanyCatalog catalog;
-  final ProductItem product;
-
-  const _CatalogProduct(this.catalog, this.product);
 }
 
 class _RecommendedProduct {

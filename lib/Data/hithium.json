@@ -1,0 +1,58 @@
+{
+    "brandId": "hithium",
+    "brandName": "Hithium",
+    "brandLogo": "assets/images/brands/hithium/logo.webp",
+    "brandBanner": "assets/images/brands/hithium/banner.webp",
+    "products": [
+        {
+            "id": "hithium_heroee_16",
+            "name": "HeroEE",
+            "model": "Hithium HeroEE 16",
+            "category": "بطارية تخزين طاقة ليثيوم",
+            "image": "assets/images/products/hithium/heroee_16.webp",
+            "datasheet": "datasheet/Datasheet HEROEE 16kW.pdf",
+            "overview": "بطارية تخزين طاقة تعتمد تقنية فوسفات الحديد والليثيوم (LiFePO4). مصممة لأنظمة التخزين السكنية مع دعم التوصيل المتوازي حتى 16 بطارية. توفر جهداً اسميًا 51.2 فولت وسعة تخزين 16 كيلوواط ساعة.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "16",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "51.2",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "16",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "Lithium-iron phosphate (LiFePO4)",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": ">8000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "7 سنوات",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 16
+            }
+        }
+    ]
+}

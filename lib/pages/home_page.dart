@@ -194,7 +194,7 @@ class _WelcomeSection extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'مرحباً بك',
+                    'مرحباً بكم',
                     textDirection: TextDirection.rtl,
                     style: const TextStyle(
                       color: AppColors.navy,

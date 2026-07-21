@@ -1,9 +1,8 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../core/theme/app_colors.dart';
+import '../solar_recommendation_engine.dart';
 import 'solar_calculator_result_page.dart';
 import 'solar_calculator_unavailable_page.dart';
 
@@ -51,7 +50,19 @@ class _SolarCalculatorPageState extends State<SolarCalculatorPage> {
     return null;
   }
 
-  void _calculate() {
+  void _clearFields() {
+    _dayLoadController.clear();
+    _nightLoadController.clear();
+    _nightHoursController.clear();
+    _formKey.currentState?.reset();
+    if (mounted) {
+      setState(() {
+        _autovalidateMode = AutovalidateMode.disabled;
+      });
+    }
+  }
+
+  Future<void> _calculate() async {
     FocusScope.of(context).unfocus();
     final isValid = _formKey.currentState?.validate() ?? false;
     if (!isValid) {
@@ -63,26 +74,51 @@ class _SolarCalculatorPageState extends State<SolarCalculatorPage> {
     final nightLoadWatts = double.parse(_nightLoadController.text.trim());
     final nightOperatingHours = int.parse(_nightHoursController.text.trim());
 
-    // TODO: Replace this temporary routing rule with the final solar sizing algorithm.
-    final requiredSystemKw = math.max(dayLoadWatts, nightLoadWatts) / 1000;
+    // Clear fields immediately after reading user inputs
+    _clearFields();
 
-    final destination = requiredSystemKw <= 5
-        ? SolarCalculatorResultPage(
-            dayLoadWatts: dayLoadWatts,
-            nightLoadWatts: nightLoadWatts,
-            nightOperatingHours: nightOperatingHours,
-            requiredSystemKw: requiredSystemKw,
-          )
-        : SolarCalculatorUnavailablePage(
-            dayLoadWatts: dayLoadWatts,
-            nightLoadWatts: nightLoadWatts,
-            nightOperatingHours: nightOperatingHours,
-            requiredSystemKw: requiredSystemKw,
-          );
+    final engine = SolarRecommendationEngine();
+    final input = SolarInput(
+      dayLoadWatts: dayLoadWatts,
+      nightLoadWatts: nightLoadWatts,
+      nightOperatingHours: nightOperatingHours,
+    );
 
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (_) => destination));
+    Widget destination;
+    try {
+      final result = engine.calculate(input);
+      destination = SolarCalculatorResultPage(
+        dayLoadWatts: dayLoadWatts,
+        nightLoadWatts: nightLoadWatts,
+        nightOperatingHours: nightOperatingHours,
+        requiredSystemKw: result.requiredInverterPowerWatts / 1000.0,
+        result: result,
+      );
+    } on RecommendationFailure catch (failure) {
+      destination = SolarCalculatorUnavailablePage(
+        dayLoadWatts: dayLoadWatts,
+        nightLoadWatts: nightLoadWatts,
+        nightOperatingHours: nightOperatingHours,
+        requiredSystemKw: (dayLoadWatts * 1.20) / 1000.0,
+        failureReason: failure.message,
+      );
+    } catch (_) {
+      destination = SolarCalculatorUnavailablePage(
+        dayLoadWatts: dayLoadWatts,
+        nightLoadWatts: nightLoadWatts,
+        nightOperatingHours: nightOperatingHours,
+        requiredSystemKw: (dayLoadWatts * 1.20) / 1000.0,
+        failureReason: 'حدث خطأ أثناء حساب التوصية المناسبة',
+      );
+    }
+
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => destination),
+    );
+
+    if (mounted) {
+      _clearFields();
+    }
   }
 
   @override

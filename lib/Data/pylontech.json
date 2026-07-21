@@ -1,0 +1,258 @@
+{
+    "brandId": "pylontech",
+    "brandName": "Pylontech",
+    "brandLogo": "assets/images/brands/pylontech/logo.webp",
+    "brandBanner": "assets/images/brands/pylontech/banner.webp",
+    "products": [
+        {
+            "id": "pylontech_fidus_battery",
+            "name": "Fidus Battery",
+            "model": "Fidus-Battery",
+            "category": "بطارية تخزين طاقة ليثيوم",
+            "image": "assets/images/products/pylontech/fidus_battery.webp",
+            "datasheet": "datasheet/Fidus-Spec.pdf",
+            "overview": "بطارية تخزين طاقة تعتمد تقنية فوسفات الحديد والليثيوم (LiFePO4). مناسبة للتركيب الجداري أو الأرضي مع درجة حماية IP65. تدعم الاتصال عبر CAN وRS485 للاستخدام في الأنظمة السكنية.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "5.12",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "51.2",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "5.12",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "LiFePO4",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": ">6000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "10 سنوات",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 5.12
+            }
+        },
+        {
+            "id": "pylontech_fb_l_16",
+            "name": "Fidus Battery Plus",
+            "model": "FB-L-16",
+            "category": "بطارية تخزين طاقة ليثيوم",
+            "image": "assets/images/products/pylontech/fb_l_16.webp",
+            "datasheet": "datasheet/EN_SD_250903_Fidus_Plus_Residential_Spec_Pylontech_20251028171331A368.pdf",
+            "overview": "بطارية تخزين طاقة منزلية تعتمد تقنية LiFePO4 مع درجة حماية IP65. توفر شاشة مدمجة ودعم Bluetooth وWi-Fi، ومناسبة للتركيب الأرضي أو الجداري.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "16.076",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "51.2",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "16.076",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "LiFePO4",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": "8000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 16.076
+            }
+        },
+        {
+            "id": "pylontech_optim_us_a300_hy",
+            "name": "OPTIM US",
+            "model": "A300-HY",
+            "category": "بطارية تخزين طاقة ليثيوم",
+            "image": "assets/images/products/pylontech/a300_hy.webp",
+            "datasheet": "datasheet/OPTIM US A300-HY_20240926105717A030.pdf",
+            "overview": "نظام تخزين طاقة تجاري يعتمد بطاريات فوسفات الحديد والليثيوم مع انفرتر هجين مدمج. يوفر سعة تخزين كبيرة لدعم تطبيقات الطاقة الاحتياطية وإدارة الأحمال. مناسب للمشاريع التجارية والصناعية.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "313",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "560~720",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "313",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "Li-ion (LFP)",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": ">7000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 313
+            }
+        },
+        {
+            "id": "pylontech_uf5000",
+            "name": "UF5000",
+            "model": "UF5000",
+            "category": "بطارية جهد منخفض",
+            "image": "assets/images/products/pylontech/uf5000.webp",
+            "datasheet": "datasheet/UF5000_20240926105838A038.pdf",
+            "overview": "بطارية تخزين طاقة منخفضة الجهد تعتمد تقنية فوسفات الحديد والليثيوم. مصممة للتركيب داخل الرفوف القياسية مقاس 19 بوصة مع إمكانية التوسع في الأنظمة السكنية والتجارية الصغيرة.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "5.12",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "51.2",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "5.12",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "LiFePO4",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": ">6000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "15 سنة",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 5.12
+            }
+        },
+        {
+            "id": "pylontech_us5000",
+            "name": "US Series",
+            "model": "US5000",
+            "category": "بطارية جهد منخفض",
+            "image": "assets/images/products/pylontech/us5000.webp",
+            "datasheet": "datasheet/US Series_20240926105858A040.pdf",
+            "overview": "بطارية ليثيوم منخفضة الجهد تعتمد تقنية LiFePO4 ومخصصة لأنظمة تخزين الطاقة المنزلية. تدعم التوصيل على الرفوف القياسية مع إمكانية التوسع في السعة.",
+            "specifications": [
+                {
+                    "title": "السعة",
+                    "value": "4.8",
+                    "unit": "kWh",
+                    "icon": "battery"
+                },
+                {
+                    "title": "الجهد الاسمي",
+                    "value": "48",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "سعة البطارية",
+                    "value": "4.8",
+                    "unit": "kWh",
+                    "icon": "capacity"
+                },
+                {
+                    "title": "الكيمياء",
+                    "value": "LiFePO4",
+                    "unit": "",
+                    "icon": "chemistry"
+                },
+                {
+                    "title": "دورات الشحن",
+                    "value": ">8000",
+                    "unit": "cycles",
+                    "icon": "cycle"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "15+ سنة",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "capacity": 4.8
+            }
+        }
+    ]
+}

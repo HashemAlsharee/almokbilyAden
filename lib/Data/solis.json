@@ -1,0 +1,508 @@
+{
+    "brandId": "solis",
+    "brandName": "Solis",
+    "brandLogo": "assets/images/brands/solis/logo.webp",
+    "brandBanner": "assets/images/brands/solis/banner.webp",
+    "products": [
+        {
+            "id": "solis_s6_eh1p_6k_l_plus",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH1P6K-L-PLUS",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh1p_6k_l_plus.webp",
+            "datasheet": "datasheet/S6-EH1P(3-10)K-Global-Flyer-V4,0.pdf",
+            "overview": "انفرتر هجين أحادي الطور يعمل مع بطاريات الجهد المنخفض. يدعم التشغيل المتصل بالشبكة وخارجها مع زمن تحويل سريع. مناسب للأنظمة السكنية.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "6",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "96.2",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "2",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "500",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "أحادي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 6
+            }
+        },
+        {
+            "id": "solis_s6_eh3p_8k02_nv_yd_l",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P8K02-NV-YD-L",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p_8k02_nv_yd_l.webp",
+            "datasheet": "datasheet/S6-EH3P(8-18)K-Global-Flyer-V3,8.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور يعمل مع بطاريات الجهد المنخفض. يدعم التشغيل داخل وخارج الشبكة مع إمكانية التوسع المتوازي. مناسب للتطبيقات التجارية الصغيرة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "8",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.5",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "2",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 8
+            }
+        },
+        {
+            "id": "solis_s6_eh1p12k03_nv_yd_l",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH1P12K03-NV-YD-L",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh1p12k03_nv_yd_l.webp",
+            "datasheet": "datasheet/Solis_datasheet_S6-EH1P(12-16)K03-NV-YD-L_Global_V2,5_202409.pdf",
+            "overview": "انفرتر هجين أحادي الطور بقدرة مرتفعة لأنظمة التخزين السكنية. يدعم بطاريات الجهد المنخفض وإدارة الأحمال الاحتياطية.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "12",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.6",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "3",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "550",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "أحادي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 12
+            }
+        },
+        {
+            "id": "solis_s6_eh3p15k02_nv_yd_l",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P15K02-NV-YD-L",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p15k02_nv_yd_l.webp",
+            "datasheet": "datasheet/S6-EH3P(8-18)K-Global-Flyer-V3,8.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور لأنظمة التخزين التجارية. يدعم التشغيل المتصل بالشبكة وخارجها مع بطاريات الجهد المنخفض.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "15",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.5",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "2",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 15
+            }
+        },
+        {
+            "id": "solis_s6_eh1p16k03_nv_yd_l",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH1P16K03-NV-YD-L",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh1p16k03_nv_yd_l.webp",
+            "datasheet": "datasheet/Solis_datasheet_S6-EH1P(12-16)K03-NV-YD-L_Global_V2,5_202409.pdf",
+            "overview": "انفرتر هجين أحادي الطور مخصص لأنظمة تخزين الطاقة السكنية. يدعم بطاريات الجهد المنخفض مع كفاءة تحويل مرتفعة وإدارة ذكية للطاقة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "16",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.6",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "3",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "550",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "أحادي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 16
+            }
+        },
+        {
+            "id": "solis_s6_eh3p18k02_nv_yd_l",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P18K02-NV-YD-L",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p18k02_nv_yd_l.webp",
+            "datasheet": "datasheet/S6-EH3P(8-18)K-Global-Flyer-V3,8.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور لأنظمة التخزين التجارية. يوفر أداءً مستقراً مع بطاريات الجهد المنخفض وإمكانية العمل داخل وخارج الشبكة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "18",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.5",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "2",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 18
+            }
+        },
+        {
+            "id": "solis_s6_eh3p30k_h",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P30K-H",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p30k_h.webp",
+            "datasheet": "datasheet/Solis_Inverter_S6_EH3P29,9_50K_H_Datasheet_GLOBAL_V2,8_202507.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور عالي الجهد للمشاريع التجارية. يدعم بطاريات الجهد العالي مع أداء مرتفع وإدارة متقدمة للطاقة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "30",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.8",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "3",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 30
+            }
+        },
+        {
+            "id": "solis_s6_eh3p50k_h",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P50K-H",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p50k_h.webp",
+            "datasheet": "datasheet/Solis_Inverter_S6_EH3P29,9_50K_H_Datasheet_GLOBAL_V2,8_202507.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور بجهد بطارية مرتفع مخصص للأنظمة التجارية والصناعية. يوفر كفاءة تحويل عالية وإدارة متقدمة للطاقة مع دعم التشغيل داخل وخارج الشبكة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "50",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.8",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "4",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 50
+            }
+        },
+        {
+            "id": "solis_s6_eh3p80k10_nv_yd_h",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P80K10-NV-YD-H",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p80k10_nv_yd_h.webp",
+            "datasheet": "datasheet/S6-EH3P(80-125)K-ZA-Flyer-V2,2.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور عالي الجهد للتطبيقات التجارية والصناعية الكبيرة. يدعم بطاريات الليثيوم عالية الجهد ويوفر أداءً مستقراً مع كفاءة مرتفعة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "80",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.5",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "10",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 80
+            }
+        },
+        {
+            "id": "solis_s6_eh3p125k10_nv_yd_h",
+            "name": "SOLARATOR SERIES",
+            "model": "S6-EH3P125K10-NV-YD-H",
+            "category": "انفرتر هجين",
+            "image": "assets/images/products/solis/s6_eh3p125k10_nv_yd_h.webp",
+            "datasheet": "datasheet/S6-EH3P(80-125)K-ZA-Flyer-V2,2.pdf",
+            "overview": "انفرتر هجين ثلاثي الطور عالي الجهد بقدرة كبيرة للمشاريع الصناعية ومحطات تخزين الطاقة. يوفر دعماً لبطاريات الجهد العالي مع كفاءة تشغيل مرتفعة.",
+            "specifications": [
+                {
+                    "title": "القدرة الاسمية",
+                    "value": "125",
+                    "unit": "kW",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "أقصى كفاءة",
+                    "value": "97.5",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "عدد MPPT",
+                    "value": "10",
+                    "unit": "",
+                    "icon": "mppt"
+                },
+                {
+                    "title": "أقصى جهد DC",
+                    "value": "1000",
+                    "unit": "V",
+                    "icon": "dc"
+                },
+                {
+                    "title": "الطور",
+                    "value": "ثلاثي",
+                    "unit": "",
+                    "icon": "phase"
+                },
+                {
+                    "title": "الضمان",
+                    "value": null,
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "ratedPower": 125
+            }
+        }
+    ]
+}
