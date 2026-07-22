@@ -470,7 +470,7 @@ final List<CompanyCatalog> companyCatalogs = [
         model: 'Hithium HeroEE 16',
         power: '16kWh',
         type: 'بطارية تخزين طاقة ليثيوم',
-        imagePath: 'images/hithium.png',
+        imagePath: 'images/hithium1.webp',
         description:
             'بطارية تخزين طاقة تعتمد تقنية فوسفات الحديد والليثيوم (LiFePO4). مصممة لأنظمة التخزين السكنية مع دعم التوصيل المتوازي حتى 16 بطارية. توفر جهداً اسميًا 51.2 فولت وسعة تخزين 16 كيلوواط ساعة.',
         specifications: {

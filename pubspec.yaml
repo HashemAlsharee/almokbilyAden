@@ -23,6 +23,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
 
 flutter:
   uses-material-design: true
@@ -31,3 +32,19 @@ flutter:
     - images/
     - lib/Data/
     - datasheet/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/icon.jpg"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "images/icon.jpg"
+  windows:
+    generate: true
+    image_path: "images/icon.jpg"
+  macos:
+    generate: true
+    image_path: "images/icon.jpg"
+
