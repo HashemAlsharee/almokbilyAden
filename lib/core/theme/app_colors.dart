@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const Color primary = Color(0xFF1F2D3D);
-  static const Color secondary = Color(0xFF88C5E4);
-  static const Color accent = Color(0xFFFFCD9C);
+  static const Color navy = Color(0xFF1F2D3D);
+  static const Color blue = Color(0xFF88C5E4);
+  static const Color orange = Color(0xFFFFCD9C);
+  static const Color green = Color(0xFF0E9F6E);
   static const Color background = Color(0xFFF8FAFC);
-  static const Color surface = Color(0xFFFFFFFF);
-  static const Color divider = Color(0xFFE5E7EB);
-  static const Color success = Color(0xFF16A34A);
-  static const Color warning = Color(0xFFF59E0B);
-  static const Color error = Color(0xFFDC2626);
+
+  // أسماء توافقية للواجهات الأصلية، وكلها تشير حصريًا إلى الألوان الرسمية.
+  static const Color primary = navy;
+  static const Color secondary = blue;
+  static const Color accent = orange;
+  static const Color surface = background;
+  static const Color divider = navy;
+  static const Color success = green;
+  static const Color warning = orange;
+  static const Color error = orange;
 }

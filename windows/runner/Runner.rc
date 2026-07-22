@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "almokbily_aden" "\0"
+            VALUE "FileDescription", "AlMokbily" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "almokbily_aden" "\0"
+            VALUE "InternalName", "AlMokbily" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "almokbily_aden.exe" "\0"
-            VALUE "ProductName", "almokbily_aden" "\0"
+            VALUE "OriginalFilename", "AlMokbily.exe" "\0"
+            VALUE "ProductName", "AlMokbily" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

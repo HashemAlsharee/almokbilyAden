@@ -1,0 +1,58 @@
+{
+    "brandId": "longi",
+    "brandName": "LONGi",
+    "brandLogo": "assets/images/brands/longi/logo.webp",
+    "brandBanner": "assets/images/brands/longi/banner.webp",
+    "products": [
+        {
+            "id": "longi_lr8_66hvd_650m",
+            "name": "Hi-MO X10",
+            "model": "LR8-66HVD-650M",
+            "category": "ألواح شمسية ثنائية الوجه",
+            "image": "assets/images/products/longi/lr8_66hvd_650m.webp",
+            "datasheet": "datasheet/Hi-MO X10 650M.pdf",
+            "overview": "لوح شمسي ثنائي الوجه يعتمد تقنية HPBC 2.0 وخلايا N-Type. يوفر قدرة عالية وكفاءة مرتفعة لأنظمة الطاقة الشمسية التجارية ومحطات الطاقة. صُمم لتحقيق أداء مستقر وعمر تشغيلي طويل.",
+            "specifications": [
+                {
+                    "title": "القدرة",
+                    "value": "650",
+                    "unit": "W",
+                    "icon": "bolt"
+                },
+                {
+                    "title": "الجهد",
+                    "value": "49.72",
+                    "unit": "V",
+                    "icon": "voltage"
+                },
+                {
+                    "title": "الكفاءة",
+                    "value": "24.06",
+                    "unit": "%",
+                    "icon": "efficiency"
+                },
+                {
+                    "title": "الوزن",
+                    "value": "33.5",
+                    "unit": "kg",
+                    "icon": "weight"
+                },
+                {
+                    "title": "نوع الخلايا",
+                    "value": "N-Type HPBC 2.0",
+                    "unit": "",
+                    "icon": "cells"
+                },
+                {
+                    "title": "الضمان",
+                    "value": "15 سنة ضمان المنتج / 30 سنة ضمان القدرة",
+                    "unit": "",
+                    "icon": "shield"
+                }
+            ],
+            "technical": {
+                "power": 650
+            }
+        }
+    ]
+}
