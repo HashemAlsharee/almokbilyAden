@@ -15,7 +15,7 @@ class AppTheme {
       surface: AppColors.background,
       error: AppColors.orange,
     ),
-    fontFamily: 'Arial',
+    fontFamily: 'At Hauss Arabic',
     textTheme: const TextTheme(
       headlineLarge: TextStyle(
         color: AppColors.navy,

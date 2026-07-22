@@ -150,23 +150,67 @@ void main() {
       );
     });
 
-    test('Should throw Failure when system size exceeds max available Solis inverter', () {
+    test('Should reject 313kWh battery container when excess > 20% for 450kWh load and choose 16kWh batteries instead', () {
       const input = SolarInput(
-        dayLoadWatts: 250000, // 250 kW -> requires 300 kW inverter
+        dayLoadWatts: 10000,
+        nightLoadWatts: 45000,
+        nightOperatingHours: 10, // 450,000 Wh (450 kWh) required
+      );
+
+      final result = engine.calculate(input);
+
+      expect(result.requiredBatteryCapacityWh, equals(450000.0));
+      // 2x 313kWh containers (626kWh) would have 39.11% excess (>20%), so MUST be rejected!
+      // Must choose 16kWh batteries (28 or 29 units) with excess <= 20%
+      expect(result.selectedBattery.power, isNot(contains('313kWh')));
+      expect(result.batteryQuantity, greaterThanOrEqualTo(28));
+      expect(result.batteryQuantity, lessThanOrEqualTo(29));
+    });
+
+    test('Should recommend 1x 5kWh battery for small night load under 5kWh', () {
+      const input = SolarInput(
+        dayLoadWatts: 1000,
+        nightLoadWatts: 500,
+        nightOperatingHours: 4, // 2000 Wh (2 kWh) required < 5 kWh
+      );
+
+      final result = engine.calculate(input);
+
+      expect(result.requiredBatteryCapacityWh, equals(2000.0));
+      expect(result.batteryQuantity, equals(1));
+      expect(result.selectedBattery.power, contains('5'));
+    });
+
+    test('Should select multiple units of largest inverter when system size exceeds max single inverter capacity', () {
+      const input = SolarInput(
+        dayLoadWatts: 250000, // 250 kW -> requires 300 kW inverter power
         nightLoadWatts: 5000,
         nightOperatingHours: 8,
       );
 
-      expect(
-        () => engine.calculate(input),
-        throwsA(
-          isA<RecommendationFailure>().having(
-            (e) => e.code,
-            'code',
-            equals('NO_SUITABLE_INVERTER'),
-          ),
-        ),
+      final result = engine.calculate(input);
+
+      // Required Inverter Power = 250 kW * 1.2 = 300 kW
+      expect(result.requiredInverterPowerWatts, equals(300000.0));
+      // Largest Solis inverter available in catalog is 125kW
+      // Quantity = ceil(300 / 125) = 3
+      expect(result.inverterQuantity, equals(3));
+      expect(result.selectedInverter.power, contains('125'));
+    });
+
+    test('Should select 2x 125kW inverters for 150kW day load requiring 180kW capacity', () {
+      const input = SolarInput(
+        dayLoadWatts: 150000, // 150 kW -> requires 180 kW inverter power
+        nightLoadWatts: 1000,
+        nightOperatingHours: 4,
       );
+
+      final result = engine.calculate(input);
+
+      expect(result.requiredInverterPowerWatts, equals(180000.0));
+      // 180kW / 125kW = 1.44 -> 2 units of 125kW
+      expect(result.inverterQuantity, equals(2));
+      expect(result.selectedInverter.power, contains('125'));
     });
   });
 }

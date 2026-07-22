@@ -45,7 +45,7 @@ const List<CompanyItem> companies = [
   ),
   CompanyItem(
     title: 'PYLONTECH',
-    bannerImage: 'images/PYLONTECH_banner_1000x475.webp',
+    bannerImage: 'images/PYLONTECH_banner_2170x725.webp',
     routeName: 'pylontech',
     catalogId: 'pylontech',
   ),

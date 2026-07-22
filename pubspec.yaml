@@ -33,6 +33,22 @@ flutter:
     - lib/Data/
     - datasheet/
 
+  fonts:
+    - family: At Hauss Arabic
+      fonts:
+        - asset: Fonts/At Hauss Arabic Light.otf
+          weight: 300
+        - asset: Fonts/At Hauss Arabic Regular.otf
+          weight: 400
+        - asset: Fonts/At Hauss Arabic Retina.otf
+          weight: 400
+        - asset: Fonts/At Hauss Arabic Medium.otf
+          weight: 500
+        - asset: Fonts/At Hauss Arabic Semibold.otf
+          weight: 600
+        - asset: Fonts/At Hauss Arabic Bold.otf
+          weight: 700
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true

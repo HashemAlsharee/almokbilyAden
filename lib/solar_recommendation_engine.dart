@@ -77,6 +77,17 @@ class SolarInput {
   }
 }
 
+/// Internal inverter sizing candidate helper
+class InverterOptionCandidate {
+  final ProductItem product;
+  final int requiredQuantity;
+
+  const InverterOptionCandidate({
+    required this.product,
+    required this.requiredQuantity,
+  });
+}
+
 /// Internal battery sizing candidate helper
 class BatteryOptionCandidate {
   final ProductItem product;
@@ -102,6 +113,7 @@ class RecommendationResult {
   final int panelQuantity;
 
   final ProductItem selectedInverter;
+  final int inverterQuantity;
   final ProductItem selectedBattery;
   final int batteryQuantity;
 
@@ -115,6 +127,7 @@ class RecommendationResult {
     required this.selectedPanel,
     required this.panelQuantity,
     required this.selectedInverter,
+    this.inverterQuantity = 1,
     required this.selectedBattery,
     required this.batteryQuantity,
     required this.calculatedDayPanels,
@@ -179,12 +192,14 @@ class SolarRecommendationEngine {
     final selectedPanel = _selectLongiPanel();
 
     // STEP 8: INVERTER SELECTION (Solis)
-    final selectedInverter = _selectSolisInverter(requiredInverterPowerWatts);
+    final selectedInverterSolution =
+        _selectSolisInverter(requiredInverterPowerWatts);
 
     return RecommendationResult(
       selectedPanel: selectedPanel,
       panelQuantity: calculatedTotalPanels,
-      selectedInverter: selectedInverter,
+      selectedInverter: selectedInverterSolution.product,
+      inverterQuantity: selectedInverterSolution.requiredQuantity,
       selectedBattery: selectedBatterySolution.product,
       batteryQuantity: selectedBatterySolution.requiredQuantity,
       calculatedDayPanels: calculatedDayPanels,
@@ -218,8 +233,9 @@ class SolarRecommendationEngine {
     return panel;
   }
 
-  /// Selects the smallest Solis inverter with ratedPowerWatts >= requiredPower
-  ProductItem _selectSolisInverter(double requiredPowerWatts) {
+  /// Selects Solis inverter(s). If no single inverter is sufficient,
+  /// selects multiple units of the largest inverter model to cover requiredPower.
+  InverterOptionCandidate _selectSolisInverter(double requiredPowerWatts) {
     final solisCatalog = _catalogs.firstWhere(
       (c) => c.id.toLowerCase() == SolarEngineConstants.solisBrandId,
       orElse: () => throw const RecommendationFailure(
@@ -244,23 +260,40 @@ class SolarRecommendationEngine {
       }
     }
 
+    if (candidates.isEmpty) {
+      throw const RecommendationFailure(
+        'تعذر تحديد قدرة انفرترات Solis المتاحة',
+        code: 'INVERTER_UNAVAILABLE',
+      );
+    }
+
     // Sort ascending by rated power
     candidates.sort((a, b) => a.value.compareTo(b.value));
 
-    // Choose first inverter with rated power >= requiredPowerWatts
+    // 1. Choose first single inverter with rated power >= requiredPowerWatts
     for (final candidate in candidates) {
       if (candidate.value >= requiredPowerWatts) {
-        return candidate.key;
+        return InverterOptionCandidate(
+          product: candidate.key,
+          requiredQuantity: 1,
+        );
       }
     }
 
-    throw RecommendationFailure(
-      'لا يوجد انفرتر Solis مناسب بقدرة تغطي الأحمال المطلوبة (${(requiredPowerWatts / 1000).toStringAsFixed(1)} kW)',
-      code: 'NO_SUITABLE_INVERTER',
+    // 2. If no single inverter is sufficient, pick the largest available inverter
+    // and calculate the required quantity to satisfy requiredPowerWatts
+    final largestCandidate = candidates.last;
+    final requiredQuantity =
+        (requiredPowerWatts / largestCandidate.value).ceil();
+
+    return InverterOptionCandidate(
+      product: largestCandidate.key,
+      requiredQuantity: requiredQuantity,
     );
   }
 
-  /// Selects optimal battery model based on lowest quantity & priority tie-breaker
+  /// Selects optimal battery model based on maximum 20% excess threshold,
+  /// minimum 5kWh capacity rule, lowest quantity & priority tie-breaker.
   BatteryOptionCandidate _selectOptimalBattery(double requiredCapacityWh) {
     final candidateBatteries = <ProductItem>[];
 
@@ -317,24 +350,37 @@ class SolarRecommendationEngine {
       );
     }
 
-    // Filter out options with extreme oversizing (excess > 100%, e.g. 313kWh container for small loads),
-    // unless no other option exists.
+    // RULE 1: If consumption is < 5 kWh (5000 Wh), recommend a ~5 kWh battery with quantity 1
+    if (requiredCapacityWh < 5000.0) {
+      final smallOptions = options
+          .where((opt) => opt.capacityWh <= 6000.0 && opt.requiredQuantity == 1)
+          .toList();
+      if (smallOptions.isNotEmpty) {
+        smallOptions.sort((a, b) => a.priority.compareTo(b.priority));
+        return smallOptions.first;
+      }
+    }
+
+    // RULE 2: Filter options where excessPercentage <= 20.0%
     final reasonableOptions =
-        options.where((opt) => opt.excessPercentage <= 100.0).toList();
-    final candidatePool =
-        reasonableOptions.isNotEmpty ? reasonableOptions : options;
+        options.where((opt) => opt.excessPercentage <= 20.0).toList();
 
-    // Primary rule: Choose solution with the LOWEST quantity.
-    // Tie-breaker: Choose product with lowest priority value.
-    candidatePool.sort((a, b) {
-      final quantityComparison =
-          a.requiredQuantity.compareTo(b.requiredQuantity);
-      if (quantityComparison != 0) return quantityComparison;
+    if (reasonableOptions.isNotEmpty) {
+      // Primary rule: Choose solution with the LOWEST quantity.
+      // Tie-breaker: Choose product with lowest priority value.
+      reasonableOptions.sort((a, b) {
+        final quantityComparison =
+            a.requiredQuantity.compareTo(b.requiredQuantity);
+        if (quantityComparison != 0) return quantityComparison;
 
-      return a.priority.compareTo(b.priority);
-    });
+        return a.priority.compareTo(b.priority);
+      });
+      return reasonableOptions.first;
+    }
 
-    return candidatePool.first;
+    // Fallback: If no option has excess <= 20%, pick option with lowest excess percentage
+    options.sort((a, b) => a.excessPercentage.compareTo(b.excessPercentage));
+    return options.first;
   }
 
   /// Extracts rated power in Watts from Solis product specs

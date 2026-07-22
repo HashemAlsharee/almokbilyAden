@@ -61,7 +61,7 @@ class SolarCalculatorResultPage extends StatelessWidget {
         product: activeResult.selectedInverter,
         category:
             'عاكس شمسي هجين (مطلوب ${(activeResult.requiredInverterPowerWatts / 1000.0).toStringAsFixed(1)} kW)',
-        quantity: '1 جهاز',
+        quantity: '${activeResult.inverterQuantity} جهاز',
         fallbackIcon: Icons.electrical_services_outlined,
       ),
       _RecommendedProduct(
